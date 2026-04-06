@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 220 20% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 10%;
+
+    --primary: 220 80% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 15% 96%;
+    --secondary-foreground: 220 20% 10%;
+
+    --muted: 220 15% 95%;
+    --muted-foreground: 220 10% 50%;
+
+    --accent: 250 80% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 15% 90%;
+    --input: 220 15% 90%;
+    --ring: 220 80% 50%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: "Google Sans Flex", "Google Sans", sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Google Sans Flex", "Google Sans", sans-serif;
+  }
+}
+
+/* Typing cursor blink */
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: hsl(var(--primary)); }
+}
+
+.typing-cursor {
+  border-right: 3px solid hsl(var(--primary));
+  animation: blink-caret 0.75s step-end infinite;
+}
+
+/* Scroll reveal */
+.reveal-card {
+  opacity: 0;
+  transform: translateY(60px) scale(0.95);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-card.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Polygon overlay clip */
+.polygon-overlay {
+  clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+  transition: clip-path 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.group:hover .polygon-overlay {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* Mobile horizontal scroll */
+.mobile-scroll {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-scroll > * {
+  scroll-snap-align: center;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Canvas behind content */
+.canvas-container {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.canvas-container canvas {
+  pointer-events: none;
+}
+
+@layer base {
+  /* Menyembunyikan kursor asli di seluruh website agar hanya bulatan kita yang terlihat */
+  html, body, * {
+    cursor: none !important;
+  }
+
+  /* Pastikan elemen interaktif juga tidak memunculkan panah standar */
+  a, button, [role="button"], input, select, textarea {
+    cursor: none !important;
+  }
+}
