@@ -25,7 +25,7 @@ import {
 } from "framer-motion";
 
 /**
- * KONSTANTA & KONFIGURASI
+ * KONSTANTA & KONFIGURASII
  */
 const FIRST_NAME = "ALIEF FAISAL";
 const LAST_NAME = "ADRIANSYAH";
